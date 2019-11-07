@@ -28,3 +28,11 @@ TEST_CASE("Digits are transliterated", "[alphanumeric]") {
 
 }
 
+TEST_CASE("Special characters are removed", "[punctuation]") {
+  const std::string special{"!@£$%^&*()-=][;\'/.,<>?:|}{+_"};
+
+  for (const auto& specialChar : special)
+    { 
+      REQUIRE( transformChar(specialChar) == "" );
+    }
+}

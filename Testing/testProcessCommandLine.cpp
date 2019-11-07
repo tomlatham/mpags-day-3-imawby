@@ -98,3 +98,13 @@ TEST_CASE("Check identity", "[cmdLineArgs]"){
   REQUIRE(processStatus == true);
 
 }
+
+// Example of testing for error conditions
+TEST_CASE("Key entered with no key specified", "[cmdLineArgs]"){
+  
+  ProgramSettings programSettings{false, false, "", "", "0", CipherMode::Encrypt};
+  std::vector<std::string> cmdLineArgs = {"./", "-k"};
+  bool processStatus{processCommandLine(cmdLineArgs, programSettings)};
+
+  REQUIRE( processStatus == false );
+}

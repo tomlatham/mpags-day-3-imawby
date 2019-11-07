@@ -14,7 +14,7 @@ directory in which to run `cmake` and the build, and change into it:
 
 ```
 $ ls
-CMakeLists.txt   LICENSE          MPAGSCipher      README.md        mpags-cipher.cpp
+CMakeLists.txt   LICENSE          MPAGSCipher      README.md        Testing          mpags-cipher.cpp
 $ mkdir ../Build
 $ cd ../Build
 ```
@@ -79,7 +79,7 @@ Available options:
 
 If no input file is supplied, `mpags-cipher` will wait for user input
 from the keyboard until RETURN followed by CTRL-D are pressed.
-It will then echo the input to stdout or write it to the file supplied with
+It will then echo the output to stdout or write it to the file supplied with
 the `-o` option.
 
 To ensure the input text can be used with the character sets known to
@@ -102,12 +102,21 @@ MPAGS-Code
 ├── CMakeLists.txt        CMake build script
 ├── mpags-cipher.cpp      Main program C++ source file
 ├── MPAGSCipher           Subdirectory for MPAGSCipher library code
-|   └── ProcessCommandLine.cpp
-|   └── ProcessCommandLine.hpp
-|   └── RunCaesarCipher.cpp
-|   └── RunCaesarCipher.hpp
-|   └── TransformChar.cpp
-|   └── TransformChar.hpp
+│   ├── CMakeLists.txt
+│   ├── CaesarCipher.cpp
+│   ├── CaesarCipher.hpp
+│   ├── CipherMode.hpp
+│   ├── ProcessCommandLine.cpp
+│   ├── ProcessCommandLine.hpp
+│   ├── TransformChar.cpp
+│   └── TransformChar.hpp
+├── Testing               Subdirectory for unit tests of the library code
+│   ├── CMakeLists.txt
+│   ├── catch.hpp
+│   ├── testCaesarCipher.cpp
+│   ├── testCatch.cpp
+│   ├── testProcessCommandLine.cpp
+│   └── testTransformChar.cpp
 ```
 
 # Copying

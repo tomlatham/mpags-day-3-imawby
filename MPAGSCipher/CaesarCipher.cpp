@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-CaesarCipher::CaesarCipher(const unsigned int cipherKey) : m_cipherKey{cipherKey}
+CaesarCipher::CaesarCipher(const size_t cipherKey) : cipherKey_{cipherKey}
 {
 }
 
@@ -25,20 +25,22 @@ CaesarCipher::CaesarCipher(const std::string& cipherKey)
       if ( ! std::isdigit(elem) ) {
 	std::cerr << "[error] cipher key must be an unsigned long integer for Caesar cipher,\n"
 	          << "        the supplied key (" << cipherKey << ") could not be successfully converted" << std::endl;
+	return;
       }
     }
-    m_cipherKey = std::stoul(cipherKey);
+    cipherKey_ = std::stoul(cipherKey);
   }
 }
 
 
-std::string CaesarCipher::applyCipher(const std::string& inputText, const CipherMode cipherMode) const {
+std::string CaesarCipher::applyCipher(const std::string& inputText, const CipherMode cipherMode) const
+{
   
   // Create the output string
   std::string outputText {};
 
   // Make sure that the key is in the range 0 - 25
-  const size_t truncatedKey {m_cipherKey % m_alphabetSize};
+  const size_t truncatedKey {cipherKey_ % alphabetSize_};
 
   // Loop over the input text
   char processedChar {'x'};
@@ -46,8 +48,8 @@ std::string CaesarCipher::applyCipher(const std::string& inputText, const Cipher
 
     // For each character in the input text, find the corresponding position in
     // the alphabet by using an indexed loop over the alphabet container
-    for ( size_t i{0}; i < m_alphabetSize; ++i ) {
-      if ( origChar == m_alphabet[i] ) {
+    for ( size_t i{0}; i < alphabetSize_; ++i ) {
+      if ( origChar == alphabet_[i] ) {
 
 	// Apply the appropriate shift (depending on whether we're encrypting
 	// or decrypting) and determine the new character
@@ -55,10 +57,10 @@ std::string CaesarCipher::applyCipher(const std::string& inputText, const Cipher
 
 	switch(cipherMode){
 	case CipherMode::Encrypt:
-	  processedChar = m_alphabet[ (i + truncatedKey) % m_alphabetSize ];
+	  processedChar = alphabet_[ (i + truncatedKey) % alphabetSize_ ];
 	  break;
 	case CipherMode::Decrypt:
-	  processedChar = m_alphabet[ (i + m_alphabetSize - truncatedKey) % m_alphabetSize ];
+	  processedChar = alphabet_[ (i + alphabetSize_ - truncatedKey) % alphabetSize_ ];
 	  break;
 	}
 	break;

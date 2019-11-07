@@ -7,5 +7,5 @@ TEST_CASE("Addition works", "[math]"){
 }
 
 TEST_CASE("subtraction works", "[maths]"){
-  REQUIRE(1-1 == 9);
+  REQUIRE(1-1 == 0);
 }
