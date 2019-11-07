@@ -1,0 +1,16 @@
+//! Unit Tests for MPAGSCipher transformChar interface
+#define CATCH_CONFIG_MAIN
+#include "catch.hpp"
+#inclide "TransformChar.cpp"
+
+TEST_CASE("Characters are uppercased", "[alphanumeric]"){
+
+  const std::string upper{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
+  const std::string lower{"abcdefghijklmnopqrstuvwxyz"};
+
+  for(char){
+
+
+  }
+
+}
